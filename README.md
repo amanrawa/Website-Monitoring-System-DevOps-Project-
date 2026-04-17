@@ -33,3 +33,8 @@ A lightweight DevOps monitoring system built using shell scripting that continuo
 ```bash
 chmod +x monitor.sh
 ./monitor.sh
+
+
+### Output
+ 2026-04-10 10:00:00 | UP | https://google.com | STATUS: 200 | TIME: 0.23 sec
+ 2026-04-10 10:02:00 | DOWN | https://example.com | STATUS: 500
