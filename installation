@@ -1,0 +1,87 @@
+🚀 STEP 1: Install Docker on EC2
+
+Connect to your EC2 and run:
+
+sudo apt update
+sudo apt install docker.io -y
+
+Start Docker:
+
+sudo systemctl start docker
+
+Enable auto-start:
+
+sudo systemctl enable docker
+🔐 STEP 2: Run Docker Without sudo (Important)
+sudo usermod -aG docker ubuntu
+
+👉 Then logout & reconnect:
+
+exit
+ssh -i your-key.pem ubuntu@YOUR_EC2_IP
+🧪 STEP 3: Test Docker
+docker run hello-world
+
+👉 If it prints success → Docker is working ✅
+
+📁 STEP 4: Go to Your Project
+cd website-monitor
+
+docker run hello-world
+
+👉 If it prints success → Docker is working ✅
+
+📁 STEP 4: Go to Your Project
+cd website-monitor
+🧱 STEP 5: Create Dockerfile
+nano Dockerfile
+STEP 6: Build Docker Image
+docker build -t website-monitor .
+▶️ STEP 7: Run Container
+docker run -d --name monitor-container website-monitor
+🔍 STEP 8: Check Running Container
+docker ps
+📊 STEP 9: Check Logs
+docker logs monitor-container
+
+Or inside container:
+
+docker exec -it monitor-container bash
+cat /app/log.txt
+🛑 STOP / REMOVE CONTAINER
+docker stop monitor-container
+docker rm monitor-container
+
+
+--cron job--
+✅ STEP 1: Install Cron
+
+Run this:
+
+sudo apt update
+sudo apt install cron -y
+▶️ STEP 2: Start Cron Service
+sudo systemctl start cron
+
+Enable it to start automatically:
+
+sudo systemctl enable cron
+🔍 STEP 3: Verify Installation
+crontab -l
+
+👉 If you see:
+
+no crontab for ubuntu
+
+✔️ That means it’s working
+
+📝 STEP 4: Add Your Cron Job
+crontab -e
+
+Add this line:
+
+*/2 * * * * /bin/bash /home/ubuntu/website-monitor/monitor.sh >> /home/ubuntu/website-monitor/cron.log 2>&1
+💾 Save
+Press CTRL + X
+Press Y
+Press Enter
